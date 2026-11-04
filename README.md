@@ -11,8 +11,8 @@
 
 ## 3. 수행 항목 체크리스트
 - [x] Git 사용자 정보 설정 및 기본 브랜치 설정
-- [ ] 터미널 기본 조작 및 폴더 구성
-- [ ] 파일 및 디렉토리 권한 변경 실습
+- [x] 터미널 기본 조작 및 폴더 구성
+- [x] 파일 및 디렉토리 권한 변경 실습
 - [ ] Docker 설치 및 기본 데몬 점검
 - [ ] 컨테이너 실행 실습 (hello-world, ubuntu)
 - [ ] 커스텀 Dockerfile 기반 웹 서버 빌드 및 실행
@@ -38,7 +38,7 @@ core.fscache=true
 core.symlinks=false
 pull.rebase=false
 credential.helper=manager
-credential.https://dev.azure.com.usehttppath=true
+credential.[https://dev.azure.com.usehttppath](https://dev.azure.com.usehttppath)=true
 init.defaultbranch=main
 core.editor="C:\Users\User\AppData\Local\Programs\Microsoft VS Code\bin\code" --wait
 user.name=jidding
@@ -50,7 +50,10 @@ core.bare=false
 core.logallrefupdates=true
 core.symlinks=false
 core.ignorecase=true
+```
 
+### 4.2 터미널 조작 로그
+```bash
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
 \$ pwd
 /c/Users/User/Documents/seugyeon
@@ -85,7 +88,10 @@ User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
 \$ rm renamed_file.txt
+```
 
+### 4.3 권한 실습 로그
+```bash
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
 \$ ls -l
 total 1
@@ -103,3 +109,28 @@ User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
 total 1
 drwxr-xr-x 1 User 197121  0 Nov  4 17:17 test_dir/
 -rw-r--r-- 1 User 197121 27 Nov  4 17:19 test_file.txt
+```
+
+---
+
+## 5. 핵심 개념 정리
+- **절대 경로 vs 상대 경로**: 
+- **파일 권한 (rwx, 755, 644)**: 
+- **포트 매핑의 필요성**: 
+- **Docker 볼륨 (영속성)**: 
+- **Git vs GitHub 차이**: 
+
+---
+
+## 6. 트러블슈팅
+### 이슈 #1: 
+- **문제**: 
+- **원인 가설**: 
+- **확인 과정**: 
+- **해결 방법**: 
+
+### 이슈 #2: 
+- **문제**: 
+- **원인 가설**: 
+- **확인 과정**: 
+- **해결 방법**:
