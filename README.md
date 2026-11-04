@@ -15,11 +15,11 @@
 - [x] 파일 및 디렉토리 권한 변경 실습
 - [x] Docker 설치 및 기본 데몬 점검
 - [x] 컨테이너 실행 실습 (hello-world, ubuntu)
-- [ ] 커스텀 Dockerfile 기반 웹 서버 빌드 및 실행
-- [ ] 포트 매핑 접속 확인
-- [ ] 바인드 마운트 반영 검증
-- [ ] Docker 볼륨 데이터 영속성 검증
-- [ ] 트러블슈팅 작성 (2건 이상)
+- [x] 커스텀 Dockerfile 기반 웹 서버 빌드 및 실행
+- [x] 포트 매핑 접속 확인
+- [x] 바인드 마운트 반영 검증
+- [x] Docker 볼륨 데이터 영속성 검증
+- [x] 트러블슈팅 작성 (2건 이상)
 
 ---
 
@@ -305,27 +305,79 @@ CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                 
 a7afb44276fb   ubuntu        "bash"     11 minutes ago   Exited (0) 5 minutes ago            angry_agnesi
 e0085fd59fc6   hello-world   "/hello"   13 minutes ago   Exited (0) 9 minutes ago            elated_carver
 ```
+### 4.5 웹 서버 구동 및 바인드 마운트 검증 로그
+```bash
+User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
+$ touch Dockerfile
 
+User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
+$ docker build -t my-web-server .
+[+] Building 20.6s (7/7) FINISHED                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                0.0s
+ => => transferring dockerfile: 305B                                0.0s
+ => [internal] load metadata for docker.io/library/nginx:latest     2.5s
+ => [internal] load .dockerignore                                   0.0s
+ => => transferring context: 2B                                     0.0s
+ => [1/2] FROM docker.io/library/nginx:latest@sha256:5ab5b0b01097  12.8s
+ => => resolve docker.io/library/nginx:latest@sha256:5ab5b0b010974  0.0s
+ => => sha256:a670537bed7086aeb8b663aad5e09cd584e1 1.40kB / 1.40kB  0.2s
+ => => sha256:d322f1bf41d8e99dc47f550cbf85e79ca18b 1.21kB / 1.21kB  0.4s
+ => => sha256:c139fe92686de21a8c49d9cb40415d1dddd95fbb 404B / 404B  0.6s
+ => => sha256:6e2ab1f3ef4e0ea3bbe1d208dfa048969199e3da 964B / 964B  0.6s
+ => => sha256:9f604dae09b216f6c87919d0e59d5a4ddc4387ef 628B / 628B  0.4s
+ => => sha256:a071113ac575190a0fee0c046bcf516323 34.05MB / 34.05MB  8.1s
+ => => sha256:6fc242d221a673263eabd14a9ad9584d31 29.86MB / 29.86MB  8.1s
+ => => extracting sha256:6fc242d221a673263eabd14a9ad9584d3177c96e5  1.9s
+ => => extracting sha256:a071113ac575190a0fee0c046bcf51632356f0741  1.5s
+ => => extracting sha256:9f604dae09b216f6c87919d0e59d5a4ddc4387ef0  0.2s
+ => => extracting sha256:6e2ab1f3ef4e0ea3bbe1d208dfa048969199e3dab  0.0s
+ => => extracting sha256:c139fe92686de21a8c49d9cb40415d1dddd95fbbe  0.0s
+ => => extracting sha256:d322f1bf41d8e99dc47f550cbf85e79ca18bc45db  0.0s
+ => => extracting sha256:a670537bed7086aeb8b663aad5e09cd584e19c659  0.0s
+ => [internal] load build context                                   0.1s
+ => => transferring context: 115B                                   0.0s
+ => [2/2] COPY ./workspace/index.html /usr/share/nginx/html/index.  0.3s
+ => exporting to image                                              4.6s
+ => => exporting layers                                             0.1s
+ => => exporting manifest sha256:200d349503287a7c4e6dc735a6b65130c  0.0s
+ => => exporting config sha256:10504dd4c1986bfe0644e66d693d80c2767  0.0s
+ => => exporting attestation manifest sha256:0c4ea5d1c87634abeef4b  0.0s
+ => => exporting manifest list sha256:5b1463037434c1e4969ef18fcbde  0.0s
+ => => naming to docker.io/library/my-web-server:latest             0.0s
+ => => unpacking to docker.io/library/my-web-server:latest          4.2s
+
+User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
+$ docker run -d -p 8080:80 -v "$(pwd)/workspace:/usr/share/nginx/html" --name codyssey-web my-web-server
+6f5134ab3b6251334f7bdbd7cfdcf3099aa1c17fe866410e42654774d0412519
+
+User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
+$ docker rm -f codyssey-web
+codyssey-web
+
+User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
+$ docker run -d -p 8080:80 -v "C:/Users/User/Documents/seugyeon/workspace:/usr/share/nginx/html" --name codyssey-web my-web-server
+2c8644e99f6b4122485bdad9c41bc9118a1a36ae83311e42764773c151676839
+```
 ---
 
 ## 5. 핵심 개념 정리
-- **절대 경로 vs 상대 경로**: 
-- **파일 권한 (rwx, 755, 644)**: 
-- **포트 매핑의 필요성**: 
-- **Docker 볼륨 (영속성)**: 
-- **Git vs GitHub 차이**: 
+- **절대 경로 vs 상대 경로**: 절대 경로는 디스크 최상단(`C:/` 또는 `/`)부터 파일의 위치까지의 전체 주소를 의미하며, 상대 경로는 현재 터미널이 위치한 곳(`.`)을 기준으로 대상을 가리키는 방식입니다.
+- **파일 권한 (rwx, 755, 644)**: `r`(읽기), `w`(쓰기), `x`(실행) 권한을 뜻합니다. 755는 소유자는 모든 권한을 갖고 나머지는 읽기/실행만 가능함을, 644는 소유자는 읽기/쓰기를, 나머지는 읽기만 가능함을 의미합니다.
+- **포트 매핑의 필요성**: 컨테이너는 호스트 컴퓨터와 격리된 자체 네트워크를 가지므로, 외부 브라우저에서 컨테이너 내부 웹 서버(80 포트)로 접속하려면 호스트의 특정 포트(예: 8080)와 연결하는 과정이 필수적입니다.
+- **Docker 볼륨 (영속성)**: 컨테이너가 삭제되면 내부 데이터도 함께 날아가므로, 이를 방지하기 위해 호스트 컴퓨터의 특정 폴더를 컨테이너 내부에 덮어씌워 데이터를 영구적으로 보존(바인드 마운트)합니다.
+- **Git vs GitHub 차이**: Git은 내 컴퓨터(로컬)에서 소스 코드의 버전을 추적하고 관리해 주는 '프로그램(도구)'이고, GitHub은 그 Git 저장소를 인터넷에 백업하고 다른 사람과 협업할 수 있도록 돕는 '온라인 플랫폼'입니다.
+- **컨테이너 종료/유지(attach/exec) 차이점**: `exit`를 입력하면 컨테이너 내부의 메인 프로세스가 종료되면서 컨테이너 자체가 멈추게(Exited) 됩니다. 반면 `Ctrl + P, Q`를 누르거나 `exec`를 사용하면 백그라운드에서 컨테이너 구동을 유지한 채 빠져나오거나 새로운 명령을 내릴 수 있습니다.
 
 ---
 
 ## 6. 트러블슈팅
-### 이슈 #1: 
-- **문제**: 
-- **원인 가설**: 
-- **확인 과정**: 
-- **해결 방법**: 
+### 이슈 #1: Git add 시 pathspec / not a git repository 오류
+- **문제**: `git add README.md` 실행 시 Git이 파일을 인식하지 못하고 오류가 발생함.
+- **원인 가설**: VSCode에서 파일을 생성할 때, Git 추적 폴더 밖이거나 숨겨진 `.git` 폴더 내부에 파일이 위치해 있어 Git 데몬이 파일 경로를 찾지 못했을 것이다.
+- **확인 과정**: 터미널에서 `ls` 명령어를 입력해 본 결과 `README.md`가 보이지 않았고, VSCode 탐색기 확인 결과 내부 시스템 폴더인 `.git` 하위에 파일이 생성된 것을 확인.
+- **해결 방법**: `README.md` 파일을 마우스 드래그를 통해 작업 최상위 디렉토리(메인 폴더)로 이동시키고 저장한 뒤, 다시 커밋을 진행하여 정상적으로 해결함.
 
-### 이슈 #2: 
-- **문제**: 
-- **원인 가설**: 
-- **확인 과정**: 
-- **해결 방법**:
+### 이슈 #2: 윈도우 환경 Git Bash 바인드 마운트 동기화 실패
+- **문제**: `docker run` 실행 시 `-v "$(pwd)/workspace..."` 옵션을 부여했으나, 호스트의 `index.html` 파일을 수정해도 브라우저(localhost:8080)에 실시간으로 반영되지 않음. - **원인 가설**: 윈도우의 Git Bash 환경에서 `$(pwd)` 명령어를 사용 시 `/c/Users/...` 형태의 리눅스식 경로로 변환되는데, 윈도우용 Docker Desktop 데몬이 이를 유효한 호스트 경로로 해석하지 못해 바인드 마운트 연결이 누락되었을 것이다.
+- **확인 과정**: 기존 컨테이너를 `docker rm -f`로 삭제하고, `\$(pwd)` 대신 윈도우의 명시적 절대 경로로 `-v` 옵션을 수정하여 재생성 후 동기화를 테스트함.
+- **해결 방법**: `-v "C:/Users/User/Documents/seugyeon/workspace:/usr/share/nginx/html"`과 같이 윈도우식 절대 경로를 직접 주입하여 컨테이너를 실행하자 실시간 파일 변경이 정상적으로 반영됨.
