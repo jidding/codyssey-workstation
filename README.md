@@ -27,7 +27,6 @@
 
 ### 4.1 Git 설정 결과
 ```bash
-(git config --list 
 diff.astextplain.textconv=astextplain
 filter.lfs.clean=git-lfs clean -- %f
 filter.lfs.smudge=git-lfs smudge -- %f
@@ -50,55 +49,57 @@ core.filemode=false
 core.bare=false
 core.logallrefupdates=true
 core.symlinks=false
-core.ignorecase=true)
-### 4.2 터미널 조작 로그
-```bash
-(PART 1에서 수행한 명령어 및 출력 결과 붙여넣기)
-```User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
-$ pwd ls -la
+core.ignorecase=true
+
+User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
+\$ pwd
 /c/Users/User/Documents/seugyeon
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
-$ mkdir -p workspace/test_dir
+\$ ls -la
+total 8
+drwxr-xr-x 1 User 197121 0 Nov 4 17:15 .
+drwxr-xr-x 1 User 197121 0 Nov 4 17:15 ..
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
-$ cd workspace
+\$ mkdir -p workspace/test_dir
+
+User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
+\$ cd workspace
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
-$ touch test_file.txt
+\$ touch test_file.txt
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
-$ echo "Hello Codyssey Workstation" > test_file.txt
+\$ echo "Hello Codyssey Workstation" > test_file.txt
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
-$ cat test_file.txt
+\$ cat test_file.txt
 Hello Codyssey Workstation
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
-$ cp test_file.txt copy_file.txt
+\$ cp test_file.txt copy_file.txt
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
-$ mv copy_file.txt renamed_file.txt
+\$ mv copy_file.txt renamed_file.txt
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
-$ rm renamed_file.txt
-### 4.3 권한 실습 로그
-```bash
-(PART 2에서 수행한 명령어 및 출력 결과 붙여넣기)
-```User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
-$ ls -l
+\$ rm renamed_file.txt
+
+User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
+\$ ls -l
 total 1
 drwxr-xr-x 1 User 197121  0 Nov  4 17:17 test_dir/
 -rw-r--r-- 1 User 197121 27 Nov  4 17:19 test_file.txt
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
-$ chmod 644 test_file.txt
+\$ chmod 644 test_file.txt
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
-$ chmod 755 test_dir
+\$ chmod 755 test_dir
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon/workspace (main)
-$ ls -l
+\$ ls -l
 total 1
 drwxr-xr-x 1 User 197121  0 Nov  4 17:17 test_dir/
 -rw-r--r-- 1 User 197121 27 Nov  4 17:19 test_file.txt
