@@ -111,13 +111,13 @@ drwxr-xr-x 1 User 197121  0 Nov  4 17:17 test_dir/
 -rw-r--r-- 1 User 197121 27 Nov  4 17:19 test_file.txt
 ```
 ### 4.4 Docker 기본 운영 및 컨테이너 로그
-'''bash
+```bash
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
-$ docker --version
+\$ docker --version
 Docker version 29.9.2, build a82e528
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
-$ docker info
+\$ docker info
 Client:
  Version:    29.9.2
  Context:    desktop-linux
@@ -224,9 +224,8 @@ Server:
  Live Restore Enabled: false
  Firewall Backend: iptables
 
-
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
-$ docker run hello-world
+\$ docker run hello-world
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
 4f55086f7dd0: Pull complete 
@@ -246,7 +245,7 @@ To generate this message, Docker took the following steps:
     to your terminal.
 
 To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
+ \$ docker run -it ubuntu bash
 
 Share images, automate workflows, and more with a free Docker ID:
  https://hub.docker.com/
@@ -254,9 +253,8 @@ Share images, automate workflows, and more with a free Docker ID:
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 
-
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
-$ docker run -it ubuntu bash
+\$ docker run -it ubuntu bash
 Unable to find image 'ubuntu:latest' locally
 latest: Pulling from library/ubuntu
 f3f25b84a7d7: Pull complete 
@@ -295,18 +293,18 @@ root@a7afb44276fb:/# exit
 exit
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
-$ docker images
-                                                    i Info →   U  In Use
+\$ docker images
+                                                 i Info →  U  In Use
 IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
 hello-world:latest   c567b231f656       25.9kB         9.49kB    U   
 ubuntu:latest        6a06111c3b0a        163MB         45.9MB    U   
 
 User@DESKTOP-6RMVFJO UCRT64 ~/Documents/seugyeon (main)
-$ docker ps -a
-CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS           PORTS     NAMES
-a7afb44276fb   ubuntu        "bash"     11 minutes ago   Exited (0) 5 minutes ago             angry_agnesi
-e0085fd59fc6   hello-world   "/hello"   13 minutes ago   Exited (0) 9 minutes ago             elated_carver
-'''
+\$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                    PORTS     NAMES
+a7afb44276fb   ubuntu        "bash"     11 minutes ago   Exited (0) 5 minutes ago            angry_agnesi
+e0085fd59fc6   hello-world   "/hello"   13 minutes ago   Exited (0) 9 minutes ago            elated_carver
+```
 
 ---
 
